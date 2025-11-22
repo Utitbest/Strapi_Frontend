@@ -12,14 +12,25 @@ export default async function AuthorsPage() {
       console.error("Failed to fetch data from Strapi:", error);
     }
 
-    if(!authors) {
-      return (
-        <div className="text-center py-20 text-3xl">
-          Error fetching Authors
+     if (!authors) return (
+        <div className="flex flex-col items-center justify-center h-[500px] bg-[#0f0f0f] text-red-500">
+          <div className="bg-[#1a1a1a] p-8 rounded-lg shadow-lg text-center">
+            <svg className="w-12 h-12 mx-auto mb-4 text-red-500" fill="none" stroke="currentColor" strokeWidth="2"
+              viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round"
+                d="M12 9v2m0 4h.01M12 5a7 7 0 100 14a7 7 0 000-14z" />
+            </svg>
+            <h2 className="text-xl font-bold mb-2">Oops! Something went wrong</h2>
+            <p className="text-gray-400 mb-4">Error fetching Authors. Please try again later.</p>
+            <Link
+              href="/blog"
+              className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded transition"
+            >
+              Retry
+            </Link>
+          </div>
         </div>
       );
-    }
-
   return (
     <section className="bg-[#0f0f0f] text-white px-6 py-16">
       <div className="max-w-6xl mx-auto text-center mb-12">
