@@ -118,7 +118,6 @@ export default function ArticlePage(){
         </div>
       </div>
 
-      {/* Featured Image */}
       <div className="max-w-4xl mx-auto mb-10 rounded-2xl overflow-hidden">
         <img
           src={heroPost.thumbnail} 
@@ -127,7 +126,6 @@ export default function ArticlePage(){
         />
       </div>
 
-      {/* Article Content */}
       <div className="max-w-4xl mx-auto prose prose-invert prose-lg text-gray-300 mb-16">
         <p className="text-[18px] text-[#ababab]">
            <ExpandableText text={heroPost.content} wordLimit={200} />
@@ -145,10 +143,9 @@ export default function ArticlePage(){
         <p className="text-[18px] text-[#ababab]">
           {heroPost.excerpt}
         </p>
-        {/* Add more paragraphs or sections as needed */}
+        
       </div>
 
-      {/* Newsletter CTA */}
       <div className="max-w-4xl mx-auto bg-[#181818] rounded-2xl p-8 mb-16 text-center shadow-lg">
         <h3 className="text-xl font-bold mb-2">Enjoying this article?</h3>
         <p className="text-gray-400 mb-4">Subscribe to our newsletter for weekly wellness tips and lifestyle inspiration.</p>
@@ -167,7 +164,6 @@ export default function ArticlePage(){
         </form>
       </div>
 
-      {/* Related Posts */}
       <div className="max-w-6xl mx-auto mb-16">
         <h3 className="text-2xl font-bold mb-6">Related Articles</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -198,7 +194,6 @@ export default function ArticlePage(){
         </div>
       </div>
 
-      {/* Social Sharing */}
       <div className="max-w-4xl mx-auto text-center mb-10">
         <p className="text-gray-400 mb-4">Share this article</p>
         <div className="flex justify-center gap-4">

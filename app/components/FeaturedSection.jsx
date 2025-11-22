@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function FeaturedSection() {
-  // placeholder data — later replace with fetch from Strapi
+  
   const featured = [
     { id: 1, title: "Exploring Modern Web Design", excerpt: "A short intro to modern patterns...", img: "/sample1.jpg", slug: "exploring-modern-web" },
     { id: 2, title: "Tailwind + Next.js Rapid Setup", excerpt: "Build fast with utility-first CSS...", img: "/sample2.jpg", slug: "tailwind-next-setup" },

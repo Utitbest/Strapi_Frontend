@@ -36,7 +36,6 @@ export default function CategoriesPage() {
 
   return (
     <section className="bg-[#0f0f0f] text-white px-6 py-16">
-      {/* Intro */}
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Explore Our Categories</h1>
         <p className="text-gray-400 text-lg max-w-3xl mx-auto">
@@ -44,9 +43,7 @@ export default function CategoriesPage() {
         </p>
       </div>
 
-      {/* Main Grid */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-10">
-        {/* Category Cards */}
         <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-8">
           {categories.map((cat, i) => (
             <a
@@ -70,9 +67,7 @@ export default function CategoriesPage() {
           ))}
         </div>
 
-        {/* Sidebar */}
         <aside className="flex flex-col gap-10">
-          {/* Newsletter */}
           <div className="bg-[#181818] rounded-xl p-6 shadow-md">
             <h3 className="text-lg font-bold mb-2">Stay Inspired</h3>
             <p className="text-sm text-gray-400 mb-4">
@@ -93,7 +88,6 @@ export default function CategoriesPage() {
             </form>
           </div>
 
-          {/* Popular Tags */}
           <div className="bg-[#181818] rounded-xl p-6 shadow-md">
             <h3 className="text-lg font-bold mb-4">Popular Tags</h3>
             <div className="flex flex-wrap gap-3 text-sm">
@@ -105,7 +99,6 @@ export default function CategoriesPage() {
             </div>
           </div>
 
-          {/* Social Links */}
           <div className="bg-[#181818] rounded-xl p-6 shadow-md">
             <h3 className="text-lg font-bold mb-4">Follow Us</h3>
             <div className="flex gap-4 flex-wrap">
