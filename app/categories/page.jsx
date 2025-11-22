@@ -3,7 +3,7 @@ export default function CategoriesPage() {
     {
       name: "Wellness",
       description: "Mindful living, self-care routines, and mental health tips for a balanced life.",
-      image: "/download.jpeg",
+      image: "/placeholder.jpg",
       author: "Jane Larsen",
       date: "Nov 19, 2025",
       link: "/category/wellness",
