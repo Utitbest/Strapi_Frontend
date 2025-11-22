@@ -11,7 +11,7 @@ import {useEffect, useState} from "react"
 import { fetchAPI } from "@/lib/api";
 import ExpandableText from "@/app/components/ExpandText"
 import Link from "next/link";
-
+import ErrorBud from "@/app/components/ErrorButton";
 export default function ArticlePage(){
   const {postId} = useParams()
   const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
@@ -27,7 +27,6 @@ export default function ArticlePage(){
         const OriginalData = await fetchAPI(`/api/posts?filters[postId][$eq]=${postId}&populate=*`);
         const postsRes = await fetchAPI("/api/posts?populate=*&sort=createdAt:desc");
 
-        console.log(OriginalData)
         setData(OriginalData?.data?.[0]);
         setThree(postsRes?.data.slice(0, 3))
       } catch (error) {
@@ -63,12 +62,7 @@ export default function ArticlePage(){
             </svg>
             <h2 className="text-xl font-bold mb-2">Oops! Something went wrong</h2>
             <p className="text-gray-400 mb-4">We couldn’t fetch your post. Please try again later.</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded transition"
-            >
-              Retry
-            </button>
+           <ErrorBud/>
           </div>
         </div>
       );

@@ -49,12 +49,12 @@ export default async function HomePage() {
             </svg>
             <h2 className="text-xl font-bold mb-2">Oops! Something went wrong</h2>
             <p className="text-gray-400 mb-4">We couldn’t fetch your post. Please try again later.</p>
-            <button
-              onClick={() => window.location.reload()}
+            <Link 
+              href="/"
               className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded transition"
             >
               Retry
-            </button>
+            </Link>
           </div>
         </div>
       );
