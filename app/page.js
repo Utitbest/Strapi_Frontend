@@ -23,6 +23,7 @@ export default async function HomePage() {
   const heroPost = posts[0]
     ? {
         title: posts[0].title,
+        category: posts[0].category.name,
         content: posts[0].desc || "",
         excerpt: posts[0].excerpt || "",
         slug: posts[0].postId,
@@ -64,19 +65,24 @@ export default async function HomePage() {
   return (
     <section className="flex w-full justify-center items-center flex-col relative">
 
-      <div className="grid h-[80vh] gap-5.5 grid-cols-2 w-full p-9.5">
-        <div className="p-10 w-full overflow-hidden rounded-2xl relative">
-          <img
-            className="h-full w-full object-center rounded-2xl object-cover transition duration-500 hover:scale-105 hover:brightness-75"
-            src={heroPost.thumbnail}
-            alt={heroPost.title}
-          />
+      <div className="px-0 grid-cols-1 h-auto viewport:h-[80vh] grid gap-5.5 viewport:grid-cols-2 w-full p-9.5">
+        <div className="flex items-center justify-center w-full overflow-hidden rounded-2xl p-10">
+          <div className="relative w-full overflow-hidden h-full rounded-2xl">
+              <img
+                className="h-full w-full object-center rounded-2xl object-cover transition duration-500 hover:scale-105 hover:brightness-75"
+                src={heroPost.thumbnail}
+                alt={heroPost.title}
+              />
+              <span className="absolute bottom-1.5 left-1.5 text-shadow-lg bg-amber-600 shadow-2xs shadow-amber-500 text-teal-50 text-center p-1.5 text-[12px] rounded-2xl">
+                  {heroPost.category}
+              </span>
+          </div>
         </div>
 
-        <div className="p-10 flex flex-col h-full rounded-2xl items-center justify-center gap-2.5">
+        <div className="p-5 viewport:p-10 flex flex-col h-full rounded-2xl items-center justify-center gap-2.5">
           <h2 className="text-5xl font-bold">{heroPost.title}</h2>
           <article className="text-[18px] text-gray-500">
-            {heroPost.excerpt || heroPost.content.slice(0, 200) + "..."}
+            {heroPost.excerpt || ""}
           </article>
           <small className="w-full flex items-center gap-2 text-white font-semibold text-[12px]">
             {heroPost.author}
@@ -92,16 +98,16 @@ export default async function HomePage() {
         </div>
       </div>
 
-      <div className="w-full px-16 py-10">
-        <div className="w-full rounded-2xl bg-[#181818] shadow-[#181818] grid grid-cols-2">
-          <div className="flex items-center justify-center px-10">
-            <article className="font-semibold text-3xl text-shadow-gray-950">
+      <div className="px-5 viewport:px-16 w-full py-10 mt-8">
+        <div className="grid-cols-1 smallcut:grid-cols-2 w-full rounded-2xl bg-[#181818] shadow-[#181818] grid">
+          <div className="flex items-center justify-center px-10 subscibe">
+            <article className="font-semibold text-3xl text-shadow-gray-950 ">
               Stay Informed With the Latest & Most Important News
             </article>
           </div>
 
-          <div className="flex flex-col h-full gap-5 p-10">
-            <div className="border-b border-gray-500 flex items-center w-full gap-3 pb-2.5">
+          <div className="flex flex-col h-full gap-5 p-10 subscibe">
+            <div className="border-b border-gray-500 flex items-center w-full gap-3 pb-2.5 subscibe1">
               <input
                 className="flex-1 outline-none border-none"
                 type="text"
@@ -128,7 +134,7 @@ export default async function HomePage() {
       <AuthorsCarousel authors={authors} strapiUrl={STRAPI_URL}/>
 
       <div className="w-full flex items-center justify-between mt-15">
-        <div className="w-full flex justify-center relative">
+        <div className="w-full flex justify-center relative make">
           <div className="basis-2/3 flex px-10">
             <div className="w-full flex-col items-center gap-5.5 flex">
               <h1 className="relative mb-[21px] pl-[30px] text-[30px] font-bold leading-[1.2] w-full">
@@ -139,13 +145,13 @@ export default async function HomePage() {
 
               <BlogLayout posts={latestPosts} strapiUrl={STRAPI_URL} />
 
-              <Link href={`/blog`} className="bg-amber-500 text-shadow-amber-50 text-white font-semibold text-2xl text-center p-3 w-[95%] rounded-2xl cursor-pointer transition duration-300 ease-in-out hover:bg-amber-600 hover:scale-105 hover:shadow-lg">
+              <Link href={`/blog`} className="bg-amber-500 text-shadow-amber-50 text-white font-semibold text-2xl text-center p-3 w-[95%] rounded-2xl cursor-pointer transition duration-300 ease-in-out hover:bg-amber-600 hover:scale-105 hover:shadow-lg smallmade">
                 Find More Article
               </Link>
             </div>
           </div>
 
-          <div className="basis-1/3 flex px-10 sticky top-0 self-start pt-3.5">
+          <div className="basis-1/3 flex px-10 sticky top-0 self-start pt-3.5 increase">
             <div className="w-full flex flex-col">
               <div className="flex-col flex gap-[4em]">
                 <span className="font-bold text-[19px] text-gray-50 kkk">
@@ -155,6 +161,9 @@ export default async function HomePage() {
                 <div className="w-full flex flex-col gap-[2.5em]">
                   <ArticleCard articles={mostReadPosts} strapiUrl={STRAPI_URL} />
                 </div>
+                 <Link href={`/blog`} className="bg-amber-500 text-shadow-amber-50 text-white font-semibold text-2xl text-center p-3 w-[95%] rounded-2xl cursor-pointer transition duration-300 ease-in-out hover:bg-amber-600 hover:scale-105 hover:shadow-lg slim:hidden">
+                  Find More Article
+                </Link>
                 <SocialHandle />
               </div>
             </div>

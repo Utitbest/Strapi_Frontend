@@ -2,6 +2,9 @@
 
 @theme {
   --breakpoint-custom: 855px;
+  --breakpoint-viewport: 1000px;
+  --breakpoint-smallcut: 800px;
+  --breakpoint-slim: 850px;
 }
 
 body {
@@ -133,5 +136,46 @@ top: -3px;
     display: flex;
     flex-direction:column ;
     align-items: start;
+  }
+}
+@media (max-width: 850px){
+  .make{
+    flex-direction: column;
+  }
+  .smallmade{
+    display: none;
+  }
+  .increase{
+    margin-top: 2em;
+    width: 100%;
+  }
+  .increase > div > div > span > span{
+    font-size: 30px;
+  }
+  .fixwid{
+    width: 100%;
+  }
+  .heigt{
+    height: 540px;
+  }
+}
+@media (max-width:540px) {
+  .subscibe{
+    text-align: center;
+    padding-inline:2px;
+  }
+}
+@media (max-width:465px) {
+  .subscibe1{
+    flex-direction: column;
+  }
+  .subscibe1 > input{
+    width: 100%;
+    border: 1px solid gray;
+    padding: 9px 5px;
+    border-radius: 10px;
+  }
+  .subscibe1 > button{
+    width: 100%;
   }
 }

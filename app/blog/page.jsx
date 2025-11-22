@@ -20,6 +20,7 @@ export default async function BlogHomePage() {
     ? {
         title: posts[0].title,
         content: posts[0].desc || "",
+        category: posts[0].category.name || '',
         excerpt: posts[0].excerpt || "",
         slug: posts[0].postId,
         thumbnail: posts[0].thumbnail?.url
@@ -74,6 +75,9 @@ export default async function BlogHomePage() {
       />
 
       <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-6 transition-opacity duration-500 group-hover:opacity-100 opacity-90">
+        <p className="inline text-shadow-lg shadow-2xs shadow-amber-500 text-teal-50 text-center p-1.5 text-[12px] rounded-2xl">
+        {heroPost.category}
+        </p>
         <h2 className="text-3xl font-bold text-white">
           {heroPost.title}
         </h2>
@@ -127,8 +131,11 @@ export default async function BlogHomePage() {
               ? new Date(post.publishedAt).toLocaleDateString()
               : "Unknown";
             return(
-            <Link href={`/readpost/${post.postId}`} key={i} className="bg-[#181818] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-              <img src={imgUrl} alt={post.title} className="w-full h-48 object-cover transition duration-500 hover:scale-105 hover:brightness-75" />
+            <Link href={`/readpost/${post.postId}`} key={i} className="relative bg-[#181818] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+              <p className="absolute top-1.5 left-1.5 inline text-shadow-lg shadow-2xs bg-amber-500 shadow-amber-500 text-teal-50 text-center p-1.5 text-[12px] rounded-2xl">
+                {post.category.name}
+              </p>
+              <img src={imgUrl} alt={post.title} className="w-full h-48 object-cover transition duration-500 hover:scale-105 hover:brightness-75"/>
               <div className="p-4">
                 <div className="text-sm text-gray-500 mb-1">{dates}</div>
                 <h4 className="text-lg font-semibold text-white">{post.title}</h4>

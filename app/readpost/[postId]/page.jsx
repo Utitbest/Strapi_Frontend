@@ -20,13 +20,16 @@ export default function ArticlePage(){
   const [error, setError] = useState(false)
   const [data, setData] = useState([])
   const [post, setThree] = useState([])
+  const [userPicture, setAuthor] = useState([])
   useEffect(()=>{
    async function FetchPost(){
       try {
         
         const OriginalData = await fetchAPI(`/api/posts?filters[postId][$eq]=${postId}&populate=*`);
-        const postsRes = await fetchAPI("/api/posts?populate=*&sort=createdAt:desc");
+        const authorsRes = await fetchAPI("/api/authors?populate=*");
 
+        const postsRes = await fetchAPI("/api/posts?populate=*&sort=createdAt:desc");
+        setAuthor(authorsRes?.data)
         setData(OriginalData?.data?.[0]);
         setThree(postsRes?.data.slice(0, 3))
       } catch (error) {
@@ -66,36 +69,45 @@ export default function ArticlePage(){
           </div>
         </div>
       );
-
-
-      const heroPost = data
-          ? {
-              title: data?.title,
-              content: data.desc || "",
-              excerpt: data.excerpt || "",
-              slug: data.postId,
-              thumbnail: data.thumbnail?.url
-                ? data.thumbnail.url.startsWith("http")
-                  ? data.thumbnail.url
-                  : `${STRAPI_URL}${data.thumbnail.url}`
-                : "/placeholder.jpg",
-              author: data.author?.name || "Unknown",
-              date: data.publishedAt
-                ? new Date(data.publishedAt).toLocaleDateString()
-                : "Unknown",
-              quote: data.quote || "",
-            }
-          : null;
+    const heroPost = data
+                ? {
+                    title: data?.title,
+                    content: data.desc || "",
+                    excerpt: data.excerpt || "",
+                    category: data.category.name || "",
+                    slug: data.postId,
+                    pictureAuthor: data.author?.slug,
+                    thumbnail: data.thumbnail?.url
+                      ? data.thumbnail.url.startsWith("http")
+                        ? data.thumbnail.url
+                        : `${STRAPI_URL}${data.thumbnail.url}`
+                      : "/placeholder.jpg",
+                    author: data.author?.name || "Unknown",
+                    date: data.publishedAt
+                      ? new Date(data.publishedAt).toLocaleDateString()
+                      : "Unknown",
+                    quote: data.quote || "",
+                  }
+                : null;
+    const usePicture = userPicture.filter((e) => e.slug === heroPost.pictureAuthor || "")
+    const realpicture = usePicture[0].authorpicture?.url
+    ? usePicture[0].authorpicture.url.startsWith("http")
+      ? usePicture[0].authorpicture.url
+        : `${STRAPI_URL}${usePicture[0].authorpicture.url}`
+          : "/placeholder.jpg";
   return (
     <section className="bg-[#0f0f0f] text-white px-6 py-16">
       <div className="max-w-4xl mx-auto text-center mb-12 gap-1.5 flex flex-col">
         <h1 className="text-4xl font-bold mb-4 text-left">{heroPost.title}</h1>
         <div className="text-gray-400 text-md flex items-center gap-3">
+          
             <figure className="h-7 w-7 overflow-hidden rounded-full">
-                <img className="object-top object-cover" src={heroPost.thumbnail} alt={heroPost.title} />
+                <img className="object-top object-cover" src={realpicture} alt={heroPost.title} />
             </figure>
 
             <small className="w-full flex items-center gap-2 text-[#616161] font-semibold text-[12px]">
+              <p className="text-[15px] text-white">{heroPost.category}</p>
+              <span className="relative w-[13px] h-px bg-[#777] text-[18px] divider"></span>
                 {heroPost.author}
               <span className="relative w-[13px] h-px bg-[#777] text-[18px] divider"></span>
                 {heroPost.date}
@@ -190,7 +202,7 @@ export default function ArticlePage(){
 
       <div className="max-w-4xl mx-auto text-center mb-10">
         <p className="text-gray-400 mb-4">Share this article</p>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-4 flex-wrap">
           {["Facebook", "X", "Instagram", "LinkedIn"].map((platform, i) => (
             <button key={i} className="bg-[#181818] px-4 py-2 rounded-full text-sm hover:bg-gray-700 transition">
               {platform}

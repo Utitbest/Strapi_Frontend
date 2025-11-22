@@ -18,12 +18,15 @@ export default function BlogLayout({ posts = [],  strapiUrl}) {
         return(
         <div key={post.id} className="w-full flex flex-col gap-10 border-b-2 border-gray-500 pb-5">
           <div className="flex flex-col gap-5">
-            <div className="w-full max-h-[540px] flex items-center justify-center overflow-hidden rounded-2xl">
+            <div className="w-full max-h-[540px] flex items-center justify-center overflow-hidden rounded-2xl relative">
               <img
                 className="object-cover w-full h-full transition duration-500 hover:scale-105 hover:brightness-75"
                 src={imgUrl}   
                 alt={post.title}
               />
+                <span className="absolute bottom-1.5 left-1.5 text-shadow-lg bg-amber-600 shadow-2xs shadow-amber-500 text-teal-50 text-center p-1.5 text-[12px] rounded-2xl">
+                  {post.category.name}
+                </span>
             </div>
 
             <div className="flex flex-col gap-3">
