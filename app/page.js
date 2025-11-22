@@ -1,65 +1,289 @@
-import Image from "next/image";
 
-export default function Home() {
+// import BlogLayout from "@/app/components/LatestPostHome";
+// import AuthorsCarousel from "@/app/components/SlideAuthors"
+// import ArticleCard from "@/app/components/MostRead";
+// import SocialHandle from "@/app/components/SocialHandler";
+// import { fetchAPI } from "@/lib/api";
+
+// export default async function HomePage() {
+
+//   let posts = [];
+//   let authors = [];
+
+//   try {
+//     const postsRes = await fetchAPI("/api/posts?populate=*&sort=createdAt:desc");
+//     const authorsRes = await fetchAPI("/api/authors?populate=*");
+//     console.log("small", postsRes)
+//     console.log("large", authorsRes)
+//     posts = postsRes?.data || [];
+//     authors = authorsRes?.data || [];
+//   } catch (error) {
+//     console.error("Failed to fetch data from Strapi:", error);
+//   }
+
+//   const heroPost = posts[0]
+//     ? {
+//         title: posts[0].attributes.title,
+//         content: posts[0].attributes.content,
+//         excerpt: posts[0].attributes.excerpt,
+//         thumbnail: posts[0].attributes.thumbnail?.data?.attributes?.url || "/placeholder.jpg",
+//         author: posts[0].attributes.author.data?.attributes?.name || "Unknown",
+//         date: new Date(posts[0].attributes.publishedAt).toLocaleDateString(),
+//       }
+//     : null;
+
+//   if (!heroPost) {
+//     return <div className="text-center py-20">No posts available right now. Please check back later.</div>;
+//   }
+
+//   const latestPosts = posts.slice(1);
+//   const mostReadPosts = posts.slice(0, 3);
+
+
+
+
+
+//   return (
+//     <section className="flex w-full justify-center items-center flex-col relative">
+
+//       {/* <div className="grid h-[80vh] gap-5.5 grid-cols-2 w-full p-9.5 ">
+//         <div className="p-10 w-full overflow-hidden rounded-2xl before:absolute b-0 l-0 via-background">
+//           <img className="h-full w-full object-center rounded-2xl object-cover transition duration-500 hover:scale-105 hover:brightness-75" src={heroPost.thumbnail} alt="mrsterlover"/>
+//         </div>
+
+//         <div className="p-10 flex flex-col h-full rounded-2xl items-center justify-center gap-2.5">
+//           <h2 className="text-5xl font-bold ">{heroPost.title}</h2>
+//           <article className="text-[18px] text-gray-500">{heroPost.content.slice(0, 7)}</article>
+//            <small className="w-full flex items-center gap-2 text-white font-semibold text-[12px]">
+//                 {heroPost.author}
+//               <span className="relative w-[13px] h-px bg-[#777] text-[18px] divider"></span>
+//                 {heroPost.date}
+//             </small>
+
+//           <div className="w-full block">
+//             <button className="mt-2.5 text-[13px] font-semibold py-1.5 px-10 cursor-pointer rounded-2xl border border-gray-500 hover:bg-gray-500 transform-fill">READ MORE</button>
+//           </div>
+//         </div>
+//       </div> */}
+
+
+//       <div className="w-full px-16 py-10">
+//         <div className="w-full rounded-2xl bg-[#181818] shadow-[#181818] grid grid-cols-2">
+//           <div className="flex items-center justify-center px-10">
+//             <article className="font-semibold text-3xl text-shadow-gray-950">Stay Informed With the Latest & Most Important News</article>
+//           </div>
+
+
+//           <div className="flex flex-col h-full gap-5 p-10">
+//             <div className="border-b border-gray-500 flex items-center w-full gap-3 pb-2.5">
+//               <input className="flex-1 outline-none border-none" type="text" placeholder="Your email address"/>
+//               <button className=" cursor-pointer text-center bg-black text-white font-bold px-5.5 rounded-2xl py-1.5">SUBSCRIBE</button>
+//             </div>
+
+
+//             <div className="flex items-center justify-center">
+//               <article className="text-gray-500">
+//                 I consent to receive newsletter via email. For further information, please review our <b className="font-bold text-amber-200 text-[15px] underline">Privacy Policy</b>
+//               </article>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//     <AuthorsCarousel/>
+    
+//     <div className="w-full flex items-center justify-between mt-15">
+//       <div className="w-full flex justify-center relative">
+//         <div className="basis-2/3 flex px-10">
+//           <div className="w-full flex-col items-center gap-5.5 flex">
+//             <h1 className="relative mb-[21px] pl-[30px] text-[30px] font-bold leading-[1.2] w-full">
+//             <span className="sillyshape"></span>
+//             <span className="sillyshape2"></span>
+//               Latest Unboard
+//             </h1>
+
+//             <BlogLayout />
+
+//          <button className=" bg-amber-500 text-shadow-amber-50 text-white font-semibold text-2xl text-center p-3 w-[95%] rounded-2xl cursor-pointer transition duration-300 ease-in-out hover:bg-amber-600 hover:scale-105 hover:shadow-lg">
+//           Find More Article
+//         </button>
+
+//           </div>
+//         </div>
+
+
+//         <div className="basis-1/3 flex px-10 sticky top-0 self-start pt-3.5">
+//           <div className="w-full flex flex-col ">
+//             <div className="flex-col flex gap-[4em]">
+//               <span className="font-bold text-[19px] text-gray-50 kkk ">
+//                 <span className="dontate1 text-[15px]">Most Read</span>  
+//               </span>
+
+//               <div className="w-full flex flex-col gap-[2.5em]">
+//                 <ArticleCard/>
+//               </div>
+//               <SocialHandle/>
+//             </div>
+
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//     </section>
+//   );
+// }
+
+import BlogLayout from "@/app/components/LatestPostHome";
+import AuthorsCarousel from "@/app/components/SlideAuthors";
+import ArticleCard from "@/app/components/MostRead";
+import SocialHandle from "@/app/components/SocialHandler";
+import { fetchAPI } from "@/lib/api";
+import Link from "next/link";
+
+export default async function HomePage() {
+  let posts = [];
+  let authors = [];
+  const STRAPI_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:1337";
+
+  try {
+    const postsRes = await fetchAPI("/api/posts?populate=*&sort=createdAt:desc");
+    const authorsRes = await fetchAPI("/api/authors?populate=*");
+
+    posts = postsRes?.data || [];
+    authors = authorsRes?.data || [];
+  } catch (error) {
+    console.error("Failed to fetch data from Strapi:", error);
+  }
+
+  const heroPost = posts[0]
+    ? {
+        title: posts[0].title,
+        content: posts[0].desc || "",
+        excerpt: posts[0].excerpt || "",
+        slug: posts[0].postId,
+        thumbnail: posts[0].thumbnail?.url
+          ? posts[0].thumbnail.url.startsWith("http")
+            ? posts[0].thumbnail.url
+            : `${STRAPI_URL}${posts[0].thumbnail.url}`
+          : "/placeholder.jpg",
+        author: posts[0].author?.name || "Unknown",
+        date: posts[0].publishedAt
+          ? new Date(posts[0].publishedAt).toLocaleDateString()
+          : "Unknown",
+        quote: posts[0].quote || "",
+      }
+    : null;
+
+  if (!heroPost) {
+    return (
+      <div className="text-center py-20">
+        No posts available right now. Please check back later.
+      </div>
+    );
+  }
+  
+  const mostReadPosts = posts.slice(1, 5);
+  const latestPosts = posts.slice(5);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <section className="flex w-full justify-center items-center flex-col relative">
+
+      <div className="grid h-[80vh] gap-5.5 grid-cols-2 w-full p-9.5">
+        <div className="p-10 w-full overflow-hidden rounded-2xl relative">
+          <img
+            className="h-full w-full object-center rounded-2xl object-cover transition duration-500 hover:scale-105 hover:brightness-75"
+            src={heroPost.thumbnail}
+            alt={heroPost.title}
+          />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="p-10 flex flex-col h-full rounded-2xl items-center justify-center gap-2.5">
+          <h2 className="text-5xl font-bold">{heroPost.title}</h2>
+          <article className="text-[18px] text-gray-500">
+            {heroPost.excerpt || heroPost.content.slice(0, 200) + "..."}
+          </article>
+          <small className="w-full flex items-center gap-2 text-white font-semibold text-[12px]">
+            {heroPost.author}
+            <span className="relative w-[13px] h-px bg-[#777] text-[18px] divider"></span>
+            {heroPost.date}
+          </small>
+
+          <div className="w-full block">
+            <Link href={`/readpost/${heroPost.slug}`} className="mt-2.5 text-[13px] font-semibold py-1.5 px-10 cursor-pointer rounded-2xl border border-gray-500 hover:bg-gray-500 transform-fill">
+              READ MORE
+            </Link>
+          </div>
         </div>
-      </main>
-    </div>
+      </div>
+
+      <div className="w-full px-16 py-10">
+        <div className="w-full rounded-2xl bg-[#181818] shadow-[#181818] grid grid-cols-2">
+          <div className="flex items-center justify-center px-10">
+            <article className="font-semibold text-3xl text-shadow-gray-950">
+              Stay Informed With the Latest & Most Important News
+            </article>
+          </div>
+
+          <div className="flex flex-col h-full gap-5 p-10">
+            <div className="border-b border-gray-500 flex items-center w-full gap-3 pb-2.5">
+              <input
+                className="flex-1 outline-none border-none"
+                type="text"
+                placeholder="Your email address"
+              />
+              <button className="cursor-pointer text-center bg-black text-white font-bold px-5.5 rounded-2xl py-1.5">
+                SUBSCRIBE
+              </button>
+            </div>
+
+            <div className="flex items-center justify-center">
+              <article className="text-gray-500">
+                I consent to receive newsletter via email. For further information,
+                please review our{" "}
+                <b className="font-bold text-amber-200 text-[15px] underline">
+                  Privacy Policy
+                </b>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <AuthorsCarousel authors={authors} strapiUrl={STRAPI_URL}/>
+
+      <div className="w-full flex items-center justify-between mt-15">
+        <div className="w-full flex justify-center relative">
+          <div className="basis-2/3 flex px-10">
+            <div className="w-full flex-col items-center gap-5.5 flex">
+              <h1 className="relative mb-[21px] pl-[30px] text-[30px] font-bold leading-[1.2] w-full">
+                <span className="sillyshape"></span>
+                <span className="sillyshape2"></span>
+                Latest Unboard
+              </h1>
+
+              <BlogLayout posts={latestPosts} strapiUrl={STRAPI_URL} />
+
+              <Link href={`/blog`} className="bg-amber-500 text-shadow-amber-50 text-white font-semibold text-2xl text-center p-3 w-[95%] rounded-2xl cursor-pointer transition duration-300 ease-in-out hover:bg-amber-600 hover:scale-105 hover:shadow-lg">
+                Find More Article
+              </Link>
+            </div>
+          </div>
+
+          <div className="basis-1/3 flex px-10 sticky top-0 self-start pt-3.5">
+            <div className="w-full flex flex-col">
+              <div className="flex-col flex gap-[4em]">
+                <span className="font-bold text-[19px] text-gray-50 kkk">
+                  <span className="dontate1 text-[15px]">Most Read</span>
+                </span>
+
+                <div className="w-full flex flex-col gap-[2.5em]">
+                  <ArticleCard articles={mostReadPosts} strapiUrl={STRAPI_URL} />
+                </div>
+                <SocialHandle />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

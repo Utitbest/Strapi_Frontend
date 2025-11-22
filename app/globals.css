@@ -1,26 +1,137 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --breakpoint-custom: 855px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #171717;
+  color: #ededed;
   font-family: Arial, Helvetica, sans-serif;
+}
+.divider::before {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 7px;
+  background: #777;
+  transform: skewY(-25deg);
+  left: 6px;
+  top: -3px;
+}
+.divider::after {
+content: '';
+position: absolute;
+width: 1px;
+height: 7px;
+background: #777;
+transform: skewY(-25deg);
+left: 3px;
+top: -3px;
+}
+.sillyshape{
+  position: absolute;
+  width: 12px;
+  height: 21px;
+  background-color:#6428ec;
+  left: 0;
+  top: 4px;
+  clip-path: polygon(83% 0, 100% 0, 66.6% 100%, 0% 100%);
+}
+.sillyshape2{
+  position: absolute;
+  width: 12px;
+  height: 22px;
+  background-color: #6428ec;
+  left: 12px;
+  top: 5px;
+  clip-path: polygon(33.3% 0, 100% 0, 17% 100%, 0% 100%);
+}
+.kkk{
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.kkk > span{
+  padding-right: 60px;
+  position: relative;
+}
+.kkk > span::before{
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 1px;
+  background-color: #333;
+  right: 0px;
+  top: 50%;
+  margin-top: 2px;
+}
+
+.kkk > span::after{
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background-color: #333;
+  right: 20px;
+  bottom: 50%;
+  margin-bottom: 2px;
+}
+
+.blockquoteShite{
+  background-color:#1d1d1d;
+  box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
+  line-height: 1.7;
+  color: #ccc;
+  box-sizing: border-box;
+  font-size: 24px !important;
+  line-height: 1.5;
+  padding: 41px 50px 41px 100px !important;
+  border-radius: 5px;
+  position: relative;
+  font-weight: 400;
+}
+.blockquoteShite > span{
+  position: absolute;
+  top: 44px;
+  left: 43px;
+  width: 38px;
+  height: 38px;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.25s ease-out;
+}
+
+@media (max-width: 1029px) {
+  .onlyview{
+    padding-inline:2em ;
+  }
+}
+@media (max-width: 890px) {
+  .responesse{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    left: 0;
+    gap: 1em;
+    flex-direction: column;
+    background-color: #171717;
+    width: 200px;
+    align-items: start;
+    justify-content: center;
+    padding: 1em;
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+    box-shadow: 2px 1px 12px 1px gray;
+  }
+  .responesse > ul{
+    display: flex;
+    flex-direction:column ;
+    align-items: start;
+  }
 }
