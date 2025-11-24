@@ -135,7 +135,7 @@ export default async function HomePage() {
 
       <div className="w-full flex items-center justify-between mt-15">
         <div className="w-full flex justify-center relative make">
-          <div className="basis-2/3 flex px-10">
+          <div className="basis-2/3 flex px-10 leftfan">
             <div className="w-full flex-col items-center gap-5.5 flex">
               <h1 className="relative mb-[21px] pl-[30px] text-[30px] font-bold leading-[1.2] w-full">
                 <span className="sillyshape"></span>

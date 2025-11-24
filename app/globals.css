@@ -163,6 +163,9 @@ top: -3px;
   .increase{
     padding-inline:0 ;
   }
+  .leftfan{
+    padding-inline:0 ;
+  }
 }
 @media (max-width:540px) {
   .subscibe{
