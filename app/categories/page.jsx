@@ -7,7 +7,6 @@ export default function CategoriesPage() {
       image: "/placeholder.jpg",
       author: "Jane Larsen",
       date: "Nov 19, 2025",
-      link: "/category/wellness",
     },
     {
       name: "Travel",
@@ -15,7 +14,6 @@ export default function CategoriesPage() {
       image: "/download (1).jpeg",
       author: "Travel Lens",
       date: "Oct 10, 2025",
-      link: "/category/travel",
     },
     {
       name: "Food",
@@ -23,7 +21,6 @@ export default function CategoriesPage() {
       image: "/download (2).jpeg",
       author: "Chef Amaka",
       date: "Sep 28, 2025",
-      link: "/category/food",
     },
     {
       name: "Style",
@@ -31,7 +28,6 @@ export default function CategoriesPage() {
       image: "/download (3).jpeg",
       author: "Isabella Taylor",
       date: "Aug 15, 2025",
-      link: "/category/style",
     },
   ];
 
