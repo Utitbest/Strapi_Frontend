@@ -164,7 +164,7 @@ top: -3px;
     padding-inline:0 ;
   }
   .leftfan{
-    padding-inline:0 ;
+    padding-inline:10px ;
   }
 }
 @media (max-width:540px) {
