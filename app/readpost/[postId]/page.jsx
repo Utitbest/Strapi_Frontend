@@ -112,7 +112,7 @@ const realpicture =
                 <img className="object-top object-cover" src={realpicture} alt={heroPost.title} />
             </figure>
 
-            <small className="w-full flex items-center gap-2 text-[#616161] font-semibold text-[12px]">
+            <small className="flex-wrap w-full flex items-center gap-2 text-[#616161] font-semibold text-[12px]">
               <p className="text-[15px] text-white">{heroPost.category}</p>
               <span className="relative w-[13px] h-px bg-[#777] text-[18px] divider"></span>
                 {heroPost.author}
