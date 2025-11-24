@@ -69,32 +69,39 @@ export default function ArticlePage(){
           </div>
         </div>
       );
-    const heroPost = data
-                ? {
-                    title: data?.title,
-                    content: data.desc || "",
-                    excerpt: data.excerpt || "",
-                    category: data.category.name || "",
-                    slug: data.postId,
-                    pictureAuthor: data.author?.slug,
-                    thumbnail: data.thumbnail?.url
-                      ? data.thumbnail.url.startsWith("http")
-                        ? data.thumbnail.url
-                        : `${STRAPI_URL}${data.thumbnail.url}`
-                      : "/placeholder.jpg",
-                    author: data.author?.name || "Unknown",
-                    date: data.publishedAt
-                      ? new Date(data.publishedAt).toLocaleDateString()
-                      : "Unknown",
-                    quote: data.quote || "",
-                  }
-                : null;
-    const usePicture = userPicture.filter((e) => e.slug === heroPost.pictureAuthor || "")
-    const realpicture = usePicture[0].authorpicture?.url
+const heroPost = data
+  ? {
+      title: data?.title ?? "Untitled",
+      content: data?.desc ?? "",
+      excerpt: data?.excerpt ?? "",
+      category: data?.category?.name ?? "Uncategorized",
+      slug: data?.postId ?? "",
+      pictureAuthor: data?.author?.slug ?? "",
+      thumbnail: data?.thumbnail?.url
+        ? data.thumbnail.url.startsWith("http")
+          ? data.thumbnail.url
+          : `${STRAPI_URL}${data.thumbnail.url}`
+        : "/placeholder.jpg",
+      author: data?.author?.name ?? "Unknown author",
+      date: data?.publishedAt
+        ? new Date(data.publishedAt).toLocaleDateString()
+        : "Unknown",
+      quote: data?.quote ?? "",
+    }
+  : null;
+
+const usePicture = (userPicture || []).filter(
+  (e) => e?.slug === heroPost?.pictureAuthor
+);
+const realpicture =
+  usePicture[0]?.authorpicture?.url
     ? usePicture[0].authorpicture.url.startsWith("http")
       ? usePicture[0].authorpicture.url
-        : `${STRAPI_URL}${usePicture[0].authorpicture.url}`
-          : "/placeholder.jpg";
+      : `${STRAPI_URL}${usePicture[0].authorpicture.url}`
+    : "/placeholder.jpg";
+
+
+
   return (
     <section className="bg-[#0f0f0f] text-white px-6 py-16">
       <div className="max-w-4xl mx-auto text-center mb-12 gap-1.5 flex flex-col">
@@ -174,32 +181,43 @@ export default function ArticlePage(){
         <h3 className="text-2xl font-bold mb-6">Related Articles</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {post.map((post, i) => {
-              const image = post.thumbnail?.url
+            const image = post?.thumbnail?.url
               ? post.thumbnail.url.startsWith("http")
                 ? post.thumbnail.url
                 : `${STRAPI_URL}${post.thumbnail.url}`
               : "/placeholder.jpg";
 
-              const date = post.publishedAt
-                      ? new Date(post.publishedAt).toLocaleDateString()
-                      : "Unknown";
-            return(
-            <Link href={`/readpost/${post.postId}`} key={i} className="bg-[#181818] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-              <img src={image} alt={post.title} className="w-full h-48 object-cover" />
-              <div className="p-4">
-                 <small className="w-full flex items-center gap-2 text-white font-semibold text-[12px]">
-                    {post.author.name}
+            const date = post?.publishedAt
+              ? new Date(post.publishedAt).toLocaleDateString()
+              : "Unknown";
+
+            return (
+              <Link
+                href={`/readpost/${post?.postId ?? ""}`}
+                key={i}
+                className="bg-[#181818] rounded-xl overflow-hidden shadow-md hover:shadow-lg transition"
+              >
+                <img
+                  src={image}
+                  alt={post?.title ?? "Untitled"}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <small className="w-full flex items-center gap-2 text-white font-semibold text-[12px]">
+                    {post?.author?.name ?? "Unknown author"}
                     <span className="relative w-[13px] h-px bg-[#777] text-[18px] divider"></span>
                     {date}
                   </small>
-                <h4 className="text-lg font-semibold text-white">{post.title}</h4>
-                <p className="text-sm text-gray-400 mt-2">{post.quote}</p>
-              </div>
-            </Link>
-          )})}
+                  <h4 className="text-lg font-semibold text-white">
+                    {post?.title ?? "Untitled"}
+                  </h4>
+                  <p className="text-sm text-gray-400 mt-2">{post?.quote ?? ""}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
-
       <div className="max-w-4xl mx-auto text-center mb-10">
         <p className="text-gray-400 mb-4">Share this article</p>
         <div className="flex justify-center gap-4 flex-wrap">
