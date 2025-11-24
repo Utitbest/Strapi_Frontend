@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function CategoriesPage() {
   const categories = [
     {
@@ -46,9 +47,9 @@ export default function CategoriesPage() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-10">
         <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-8">
           {categories.map((cat, i) => (
-            <a
+            <Link
               key={i}
-              href={cat.link}
+              href="/category"
               className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition"
             >
               <img
@@ -63,7 +64,7 @@ export default function CategoriesPage() {
                   By {cat.author} • {cat.date}
                 </small>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
