@@ -13,7 +13,7 @@ export default async function AuthorsPage() {
     }
 
      if (!authors) return (
-        <div className="flex flex-col items-center justify-center h-[500px] bg-[#0f0f0f] text-red-500">
+        <div className="flex flex-col items-center justify-center h-[500px] bg-[#171717] text-red-500">
           <div className="bg-[#1a1a1a] p-8 rounded-lg shadow-lg text-center">
             <svg className="w-12 h-12 mx-auto mb-4 text-red-500" fill="none" stroke="currentColor" strokeWidth="2"
               viewBox="0 0 24 24">
@@ -32,7 +32,7 @@ export default async function AuthorsPage() {
         </div>
       );
   return (
-    <section className="bg-[#0f0f0f] text-white px-6 py-16">
+    <section className="bg-[#171717] text-white px-6 py-16">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Meet Our Authors</h1>
         <p className="text-gray-400 text-lg max-w-3xl mx-auto">
